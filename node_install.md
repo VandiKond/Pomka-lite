@@ -1,0 +1,1 @@
+npm i telegraf sqlite3 sequelize sequelize-cli

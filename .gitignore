@@ -1,0 +1,4 @@
+Config.bot/
+package-lock.json
+node_modules
+database.sqlite

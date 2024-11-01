@@ -76,7 +76,7 @@ async function create_command_back(commandName, action, user) {
     if (action.length >= 500 || action.length < 2) {
         let err = new Error("Действие бота слишком длинное")
         if (action.length < 2) {
-        let err = new Error("Действие бота слишком короткое")
+            err = new Error("Действие бота слишком короткое")
         }
         err.code = 413
         err.name = "ActionLength"

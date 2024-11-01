@@ -39,7 +39,7 @@ async function create_command_front(text, user, ctx) {
         } else {
             // If the error is unexpecteed adding a different message
             reply_text = `❌ Непонятная ошибка : ${err.message}`
-            
+
             // throwing the error
             throw err
         }
@@ -62,16 +62,22 @@ async function create_command_front(text, user, ctx) {
 async function create_command_back(commandName, action, user) {
 
     // If the command name is not valid
-    if (commandName.length >= 100) {
+    if (commandName.length < 2 || commandName.length >= 100) {
         let err = new Error("Команда слишком длинная")
-        err.code =  413
-        err.name =  "CommandLength" 
+        if (commandName.length < 2) {
+            err = new Error("Команда слишком короткая")
+        }
+        err.code = 413
+        err.name = "CommandLength"
         throw err
     }
 
     // If the action is not valid
-    if (action.length >= 500) {
+    if (action.length >= 500 || action.length < 2) {
         let err = new Error("Действие бота слишком длинное")
+        if (action.length < 2) {
+        let err = new Error("Действие бота слишком короткое")
+        }
         err.code = 413
         err.name = "ActionLength"
         throw err
@@ -80,8 +86,8 @@ async function create_command_back(commandName, action, user) {
     // Checks the existense
     const exist = await CommandService.check(commandName)
     if (exist) {
-        let err = new Error("Команда уже существует") 
-        err.code =  429
+        let err = new Error("Команда уже существует")
+        err.code = 429
         err.name = "CommandExists"
     }
 

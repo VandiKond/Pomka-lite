@@ -67,7 +67,7 @@ class TransactionService {
      * @returns a string about the transaction
      */
     static async formatToString(data) {
-        console.log(user)
+        let user = await User.findByPk(data.UserId)
         return `🔆 Действие #${data.Id}: ${data.Type} \nПользователь: <a href='${await Link.l(user)}'>${user.Nickname}</a>\nДоп информация: ${data.Description}\nВремя: ${new Date(data.ProcessedAt).toLocaleString('ru-RU', time_options)}`
     }
 }

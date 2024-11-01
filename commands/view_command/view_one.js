@@ -1,5 +1,6 @@
 const add_suf = require("../../add_suf");
 const CommandService = require("../../services/CommandService");
+const UserService = require("../../services/UserService");
 
 class Command_data{
     /**
@@ -12,6 +13,7 @@ class Command_data{
         this.Name = command.Name
         this.ActionName = command.ActionName
         this.Times = command.TimesUsed
+        this.OwnerId = command.OwnerId
     }
 }
 
@@ -33,8 +35,12 @@ async function view_one_front(text = "", user, ctx) {
         let add = ""
         if (command_data.Match) add = " (Ваша)"
 
+        // Get's the ownet
+        const owner = await new UserService(command_data.OwnerId)
         // Ads other information
-        send_text = `🔑 Команда ${text}${add}: 
+        send_text = `🔑 Команда ${text}${add}:
+        
+▫️ Создатель: <a href='${await Link.l(owner)}'>${owner.Nickname}</a>
 ▫️Реакция бота: ${command_data.ActionName}
 ▫️Использована: ${add_suf(command_data.Times)} раз`
     } catch (err) {
@@ -77,7 +83,7 @@ async function view_one_back(name, user) {
     const command = await new CommandService(name)
 
     // Gets better information about the command
-    return new Command_data(command, user)
+    return await new Command_data(command, user)
 
 }
 

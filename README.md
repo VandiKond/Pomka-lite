@@ -44,7 +44,7 @@ const version = "<b>1.0</b>"
 
 const start_message =  "ТВОЕ_СООБЩЕНИЕ_ДЛЯ_СТАРТА_БОТА"
 
-const password = "ТВОЙ_КОД_ДЛЯ_БЛОКИРОВКИ"
+const password = "ТВОЙ_КОД_ДЛЯ_БЛОКИРОВКИ".toLowerCase()
 
 module.exports = { chanel, chanelBot, bot, creator, if_allow, version, Use_tocken, start_message, password}
 ```

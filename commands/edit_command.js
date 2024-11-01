@@ -76,8 +76,11 @@ async function edit_command_back(name, new_action, user) {
     }
 
     // If the action is not valid
-    if (new_action.length >= 500) {
+    if (action.length >= 500 || action.length < 2) {
         let err = new Error("Действие бота слишком длинное")
+        if (action.length < 2) {
+            err = new Error("Действие бота слишком короткое")
+        }
         err.code = 413
         err.name = "ActionLength"
         throw err

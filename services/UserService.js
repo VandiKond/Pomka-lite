@@ -21,7 +21,7 @@ class UserService {
             // If not exists creating it
             if (!user.UserId && nickname && username) {
                 // Adding  nickname to data
-                data.Nicknuserame = nickname
+                data.Nickname = nickname
 
                 // adding the username
                 data.Username = username

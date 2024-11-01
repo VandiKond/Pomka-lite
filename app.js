@@ -64,6 +64,11 @@ bot.start(async (ctx) => {
     // It sends the start message
     await Reply.r(ctx, start_message)
 });
+// Or command help
+bot.help(async (ctx) => {
+    // It sends the start message
+    await Reply.r(ctx, start_message)
+})
 
 // If bot gets any kind of message
 bot.on('message', async (ctx) => {
